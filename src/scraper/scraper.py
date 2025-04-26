@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 import os
 import time 
-
+from extractor import extract_and_save_coffee_data
 load_dotenv()
 
 # Load environment variables from .env file
@@ -50,7 +50,8 @@ while True:
 
         link.send_keys(Keys.COMMAND + Keys.RETURN) 
         driver.switch_to.window(driver.window_handles[-1]) 
-        time.sleep(5)  
+        time.sleep(5)
+        extract_and_save_coffee_data(driver)
         driver.close() 
         driver.switch_to.window(driver.window_handles[0]) 
 
@@ -65,5 +66,8 @@ while True:
     except:
         print("Next button not found.")
         break
+
+
+
 
 
